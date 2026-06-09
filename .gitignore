@@ -15,3 +15,8 @@ __pycache__/
 .venv/
 dist/
 build/
+
+# Keep paper figures required by the manuscript.
+!figure1.pdf
+!figures/
+!figures/*.pdf
