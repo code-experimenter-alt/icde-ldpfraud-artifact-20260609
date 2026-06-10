@@ -11,6 +11,8 @@
 /*.toc
 /main.pdf
 /supplementary_material.pdf
+/artifact_index.html
+/figures/
 *.zip
 *.pyc
 __pycache__/

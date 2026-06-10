@@ -1,15 +1,17 @@
 # Anonymous ICDE LDP Budget-Integrity Artifact
 
 This repository-style artifact accompanies the anonymous ICDE submission on
-budget-integrity certificates for LDP data markets. It contains the manuscript
-source, figure files, deterministic experiment scripts, generated CSV/JSON
-results, and the retained AWS Nitro Enclaves evidence used by the paper.
+budget-integrity certificates for LDP data markets. It contains the
+reproducibility code, generated CSV/JSON result tables, and the retained AWS
+Nitro Enclaves evidence used by the paper.
+
+The manuscript source, LaTeX support files, and rendered paper figures are
+intentionally excluded from this minimal code/results artifact.
 
 ## Contents
 
-- `ICDE_LDP_Budget_Integrity_Round4_Revised.tex`: anonymous manuscript source.
-- `figure1.pdf`, `figures/`: paper figures in PDF, plus PNG copies for quick
-  inspection.
+- `Makefile`, `requirements.txt`: reproducibility entry points and Python
+  dependency list.
 - `experiments/*.py`: deterministic local simulations for disclosure baselines,
   valuation, marketing workloads, PoW calibration, incentive checks, market
   utility, robustness, throughput/cost summaries, and attacker strategies.
@@ -40,8 +42,9 @@ make smoke
 ```
 
 The local scripts regenerate `experiments/results/*.csv`,
-`experiments/results/*.json`, `artifact_index.html`, and the PDF/PNG figures
-under `figures/`.
+`experiments/results/*.json`, `artifact_index.html`, and PDF/PNG figures under
+`figures/`. The generated `figures/` directory and generated index HTML are not
+stored in this minimal package.
 
 ## Nitro Evidence
 

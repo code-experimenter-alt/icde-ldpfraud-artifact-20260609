@@ -4,15 +4,16 @@ This directory supports the ICDE-oriented LDP data-marketing evaluation.
 
 ## Local reproducibility
 
-Run the full local paper artifact from the repository root:
+Run the full local result-generation workflow from the repository root:
 
 ```bash
 make paper_tables
 ```
 
-This regenerates Goal 1, Goal 2-8 CSV/JSON files, `artifact_index.html`, and all
-color PDF/PNG figures under `figures/`. Use `make smoke` for the same generation
-plus a small artifact-existence check.
+This regenerates Goal 0-8 CSV/JSON files, `artifact_index.html`, and color
+PDF/PNG figures under `figures/`. The generated index and figures are not stored
+in the minimal release package. Use `make smoke` for the same generation plus a
+small artifact-existence check.
 
 Run only the base valuation simulation with:
 
@@ -33,8 +34,8 @@ final AWS run:
 python3 make_experiment_figures.py
 ```
 
-The plotting stack is installed in the user Python environment and pinned in
-`../requirements.txt`. Offline wheels are saved in `../python_wheels/`.
+The plotting stack is pinned in `../requirements.txt`. Offline wheel caches are
+not part of the minimal artifact package.
 
 ## AWS Nitro Enclaves requirement
 
