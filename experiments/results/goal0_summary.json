@@ -1,0 +1,15 @@
+{
+  "exact_disclosure_baselines": [
+    "DirectAttest",
+    "RejectMismatch"
+  ],
+  "purpose": "Direct-attestation and disclosure-deterrence baselines.",
+  "sealed_class_mechanisms": [
+    "TEEOnly",
+    "AuditSlash",
+    "StrongDeposit",
+    "ReputationOnly",
+    "TEE-PoW",
+    "Deposit+PoW"
+  ]
+}

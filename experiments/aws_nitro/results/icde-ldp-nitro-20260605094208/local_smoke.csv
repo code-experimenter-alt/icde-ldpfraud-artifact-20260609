@@ -1,0 +1,3 @@
+idx,epsilon_h,epsilon_c,k,counter,oracle_elapsed_ns,round_trip_ns,pow_ns,nonce,attestation_mode,attestation_document_sha256,attestation_document_bytes,attestation_elapsed_ns
+0,0.5,2.0,15,1,2031750,42240522,53115103,34553,local-no-nsm,,0,0
+1,0.5,2.0,15,2,2049737,2344282,62854464,41180,local-no-nsm,,0,0

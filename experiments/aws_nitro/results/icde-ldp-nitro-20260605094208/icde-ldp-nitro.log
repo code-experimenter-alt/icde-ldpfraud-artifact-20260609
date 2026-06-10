@@ -1,0 +1,674 @@
++ RUN_ID=icde-ldp-nitro-20260605094208
++ BUCKET=dp-auditmarket-nitro-279706066616-us-east-2
++ PREFIX=nitro-results/icde-ldp-nitro-20260605094208
++ SRC_TGZ=s3://dp-auditmarket-nitro-279706066616-us-east-2/nitro-results/icde-ldp-nitro-20260605094208/source/aws_nitro.tgz
++ WORK=/opt/icde-ldp-nitro
++ RESULTS=/opt/icde-ldp-nitro/results
++ mkdir -p /opt/icde-ldp-nitro /opt/icde-ldp-nitro/results /opt/icde-ldp-nitro/results/parent_diagnostics_initial /opt/icde-ldp-nitro/results/parent_diagnostics_final
++ cd /opt/icde-ldp-nitro
++ trap cleanup_and_upload EXIT
++ cat
++ dnf install -y aws-nitro-enclaves-cli aws-nitro-enclaves-cli-devel docker jq tar gzip python3 python3-pip git shadow-utils
+Amazon Linux 2023 repository                     81 MB/s |  65 MB     00:00    
+Amazon Linux 2023 Kernel Livepatch repository   454 kB/s |  47 kB     00:00    
+Package jq-1.7.1-51.amzn2023.x86_64 is already installed.
+Package tar-2:1.34-1.amzn2023.0.4.x86_64 is already installed.
+Package gzip-1.12-1.amzn2023.0.1.x86_64 is already installed.
+Package python3-3.9.25-1.amzn2023.0.5.x86_64 is already installed.
+Package shadow-utils-2:4.9-12.amzn2023.0.4.x86_64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package                      Arch   Version                  Repository   Size
+================================================================================
+Installing:
+ aws-nitro-enclaves-cli       x86_64 1.4.4-0.amzn2023         amazonlinux 6.7 M
+ aws-nitro-enclaves-cli-devel x86_64 1.4.4-0.amzn2023         amazonlinux  15 M
+ docker                       x86_64 25.0.14-1.amzn2023.0.6   amazonlinux  46 M
+ git                          x86_64 2.50.1-1.amzn2023.0.1    amazonlinux  53 k
+ python3-pip                  noarch 21.3.1-2.amzn2023.0.19   amazonlinux 1.8 M
+Installing dependencies:
+ container-selinux            noarch 4:2.245.0-1.amzn2023     amazonlinux  58 k
+ containerd                   x86_64 2.2.3-1.amzn2023.0.2     amazonlinux  24 M
+ git-core                     x86_64 2.50.1-1.amzn2023.0.1    amazonlinux 4.9 M
+ git-core-doc                 noarch 2.50.1-1.amzn2023.0.1    amazonlinux 2.8 M
+ iptables-libs                x86_64 1.8.8-3.amzn2023.0.2     amazonlinux 401 k
+ iptables-nft                 x86_64 1.8.8-3.amzn2023.0.2     amazonlinux 183 k
+ libcgroup                    x86_64 3.0-1.amzn2023.0.1       amazonlinux  75 k
+ libnetfilter_conntrack       x86_64 1.0.8-2.amzn2023.0.2     amazonlinux  58 k
+ libnfnetlink                 x86_64 1.0.1-19.amzn2023.0.2    amazonlinux  30 k
+ libnftnl                     x86_64 1.2.2-2.amzn2023.0.2     amazonlinux  84 k
+ perl-Error                   noarch 1:0.17030-2.amzn2023.0.1 amazonlinux  42 k
+ perl-File-Find               noarch 1.37-477.amzn2023.0.8    amazonlinux  25 k
+ perl-Git                     noarch 2.50.1-1.amzn2023.0.1    amazonlinux  41 k
+ perl-TermReadKey             x86_64 2.38-9.amzn2023.0.3      amazonlinux  36 k
+ perl-lib                     x86_64 0.65-477.amzn2023.0.8    amazonlinux  15 k
+ pigz                         x86_64 2.5-1.amzn2023.0.3       amazonlinux  83 k
+ runc                         x86_64 1.3.4-5.amzn2023.0.2     amazonlinux 3.9 M
+Installing weak dependencies:
+ libxcrypt-compat             x86_64 4.4.33-7.amzn2023        amazonlinux  92 k
+
+Transaction Summary
+================================================================================
+Install  23 Packages
+
+Total download size: 107 M
+Installed size: 412 M
+Downloading Packages:
+(1/23): container-selinux-2.245.0-1.amzn2023.no 1.8 MB/s |  58 kB     00:00    
+(2/23): aws-nitro-enclaves-cli-1.4.4-0.amzn2023  47 MB/s | 6.7 MB     00:00    
+(3/23): aws-nitro-enclaves-cli-devel-1.4.4-0.am  74 MB/s |  15 MB     00:00    
+(4/23): git-2.50.1-1.amzn2023.0.1.x86_64.rpm    2.0 MB/s |  53 kB     00:00    
+(5/23): git-core-2.50.1-1.amzn2023.0.1.x86_64.r  75 MB/s | 4.9 MB     00:00    
+(6/23): containerd-2.2.3-1.amzn2023.0.2.x86_64.  76 MB/s |  24 MB     00:00    
+(7/23): git-core-doc-2.50.1-1.amzn2023.0.1.noar  37 MB/s | 2.8 MB     00:00    
+(8/23): iptables-libs-1.8.8-3.amzn2023.0.2.x86_  13 MB/s | 401 kB     00:00    
+(9/23): iptables-nft-1.8.8-3.amzn2023.0.2.x86_6 7.5 MB/s | 183 kB     00:00    
+(10/23): libcgroup-3.0-1.amzn2023.0.1.x86_64.rp 3.4 MB/s |  75 kB     00:00    
+(11/23): libnetfilter_conntrack-1.0.8-2.amzn202 2.2 MB/s |  58 kB     00:00    
+(12/23): libnfnetlink-1.0.1-19.amzn2023.0.2.x86 1.3 MB/s |  30 kB     00:00    
+(13/23): libnftnl-1.2.2-2.amzn2023.0.2.x86_64.r 4.1 MB/s |  84 kB     00:00    
+(14/23): libxcrypt-compat-4.4.33-7.amzn2023.x86 4.4 MB/s |  92 kB     00:00    
+(15/23): perl-Error-0.17030-2.amzn2023.0.1.noar 1.4 MB/s |  42 kB     00:00    
+(16/23): perl-File-Find-1.37-477.amzn2023.0.8.n 1.1 MB/s |  25 kB     00:00    
+(17/23): perl-Git-2.50.1-1.amzn2023.0.1.noarch. 1.6 MB/s |  41 kB     00:00    
+(18/23): perl-TermReadKey-2.38-9.amzn2023.0.3.x 1.3 MB/s |  36 kB     00:00    
+(19/23): perl-lib-0.65-477.amzn2023.0.8.x86_64. 589 kB/s |  15 kB     00:00    
+(20/23): pigz-2.5-1.amzn2023.0.3.x86_64.rpm     2.7 MB/s |  83 kB     00:00    
+(21/23): python3-pip-21.3.1-2.amzn2023.0.19.noa  46 MB/s | 1.8 MB     00:00    
+(22/23): runc-1.3.4-5.amzn2023.0.2.x86_64.rpm    56 MB/s | 3.9 MB     00:00    
+(23/23): docker-25.0.14-1.amzn2023.0.6.x86_64.r  79 MB/s |  46 MB     00:00    
+--------------------------------------------------------------------------------
+Total                                           135 MB/s | 107 MB     00:00     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : runc-1.3.4-5.amzn2023.0.2.x86_64                      1/23 
+  Installing       : git-core-2.50.1-1.amzn2023.0.1.x86_64                 2/23 
+  Installing       : git-core-doc-2.50.1-1.amzn2023.0.1.noarch             3/23 
+  Installing       : containerd-2.2.3-1.amzn2023.0.2.x86_64                4/23 
+  Running scriptlet: containerd-2.2.3-1.amzn2023.0.2.x86_64                4/23 
+  Installing       : pigz-2.5-1.amzn2023.0.3.x86_64                        5/23 
+  Installing       : perl-lib-0.65-477.amzn2023.0.8.x86_64                 6/23 
+  Installing       : perl-TermReadKey-2.38-9.amzn2023.0.3.x86_64           7/23 
+  Installing       : perl-File-Find-1.37-477.amzn2023.0.8.noarch           8/23 
+  Installing       : perl-Error-1:0.17030-2.amzn2023.0.1.noarch            9/23 
+  Installing       : perl-Git-2.50.1-1.amzn2023.0.1.noarch                10/23 
+  Installing       : git-2.50.1-1.amzn2023.0.1.x86_64                     11/23 
+  Installing       : libxcrypt-compat-4.4.33-7.amzn2023.x86_64            12/23 
+  Installing       : libnftnl-1.2.2-2.amzn2023.0.2.x86_64                 13/23 
+  Installing       : libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64            14/23 
+  Installing       : libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64   15/23 
+  Installing       : iptables-libs-1.8.8-3.amzn2023.0.2.x86_64            16/23 
+  Installing       : iptables-nft-1.8.8-3.amzn2023.0.2.x86_64             17/23 
+  Running scriptlet: iptables-nft-1.8.8-3.amzn2023.0.2.x86_64             17/23 
+  Installing       : libcgroup-3.0-1.amzn2023.0.1.x86_64                  18/23 
+  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch        19/23 
+  Installing       : container-selinux-4:2.245.0-1.amzn2023.noarch        19/23 
+  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch        19/23 
+  Running scriptlet: docker-25.0.14-1.amzn2023.0.6.x86_64                 20/23 
+  Installing       : docker-25.0.14-1.amzn2023.0.6.x86_64                 20/23 
+  Running scriptlet: docker-25.0.14-1.amzn2023.0.6.x86_64                 20/23 
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /usr/lib/systemd/system/docker.socket.
+
+  Running scriptlet: aws-nitro-enclaves-cli-1.4.4-0.amzn2023.x86_64       21/23 
+  Installing       : aws-nitro-enclaves-cli-1.4.4-0.amzn2023.x86_64       21/23 
+  Running scriptlet: aws-nitro-enclaves-cli-1.4.4-0.amzn2023.x86_64       21/23 
+
+    * In order to successfully run Nitro Enclaves, please add your user to group 'ne'
+
+    * Before being able to run enclaves, the system administrator must reserve the required
+      resources (i.e. CPUs and memory). Edit the allocator configuration file at
+      /etc/nitro_enclaves/allocator.yaml and then start the allocator oneshot service:
+      
+        sudo systemctl start nitro-enclaves-allocator.service
+
+      Resource allocation can be performed at system boot (recommended), by enabling
+      the allocator service:
+
+        sudo systemctl enable nitro-enclaves-allocator.service
+
+
+  Installing       : python3-pip-21.3.1-2.amzn2023.0.19.noarch            22/23 
+  Installing       : aws-nitro-enclaves-cli-devel-1.4.4-0.amzn2023.x86_   23/23 
+  Running scriptlet: container-selinux-4:2.245.0-1.amzn2023.noarch        23/23 
+  Running scriptlet: aws-nitro-enclaves-cli-devel-1.4.4-0.amzn2023.x86_   23/23 
+  Verifying        : aws-nitro-enclaves-cli-1.4.4-0.amzn2023.x86_64        1/23 
+  Verifying        : aws-nitro-enclaves-cli-devel-1.4.4-0.amzn2023.x86_    2/23 
+  Verifying        : container-selinux-4:2.245.0-1.amzn2023.noarch         3/23 
+  Verifying        : containerd-2.2.3-1.amzn2023.0.2.x86_64                4/23 
+  Verifying        : docker-25.0.14-1.amzn2023.0.6.x86_64                  5/23 
+  Verifying        : git-2.50.1-1.amzn2023.0.1.x86_64                      6/23 
+  Verifying        : git-core-2.50.1-1.amzn2023.0.1.x86_64                 7/23 
+  Verifying        : git-core-doc-2.50.1-1.amzn2023.0.1.noarch             8/23 
+  Verifying        : iptables-libs-1.8.8-3.amzn2023.0.2.x86_64             9/23 
+  Verifying        : iptables-nft-1.8.8-3.amzn2023.0.2.x86_64             10/23 
+  Verifying        : libcgroup-3.0-1.amzn2023.0.1.x86_64                  11/23 
+  Verifying        : libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64   12/23 
+  Verifying        : libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64            13/23 
+  Verifying        : libnftnl-1.2.2-2.amzn2023.0.2.x86_64                 14/23 
+  Verifying        : libxcrypt-compat-4.4.33-7.amzn2023.x86_64            15/23 
+  Verifying        : perl-Error-1:0.17030-2.amzn2023.0.1.noarch           16/23 
+  Verifying        : perl-File-Find-1.37-477.amzn2023.0.8.noarch          17/23 
+  Verifying        : perl-Git-2.50.1-1.amzn2023.0.1.noarch                18/23 
+  Verifying        : perl-TermReadKey-2.38-9.amzn2023.0.3.x86_64          19/23 
+  Verifying        : perl-lib-0.65-477.amzn2023.0.8.x86_64                20/23 
+  Verifying        : pigz-2.5-1.amzn2023.0.3.x86_64                       21/23 
+  Verifying        : python3-pip-21.3.1-2.amzn2023.0.19.noarch            22/23 
+  Verifying        : runc-1.3.4-5.amzn2023.0.2.x86_64                     23/23 
+
+Installed:
+  aws-nitro-enclaves-cli-1.4.4-0.amzn2023.x86_64                                
+  aws-nitro-enclaves-cli-devel-1.4.4-0.amzn2023.x86_64                          
+  container-selinux-4:2.245.0-1.amzn2023.noarch                                 
+  containerd-2.2.3-1.amzn2023.0.2.x86_64                                        
+  docker-25.0.14-1.amzn2023.0.6.x86_64                                          
+  git-2.50.1-1.amzn2023.0.1.x86_64                                              
+  git-core-2.50.1-1.amzn2023.0.1.x86_64                                         
+  git-core-doc-2.50.1-1.amzn2023.0.1.noarch                                     
+  iptables-libs-1.8.8-3.amzn2023.0.2.x86_64                                     
+  iptables-nft-1.8.8-3.amzn2023.0.2.x86_64                                      
+  libcgroup-3.0-1.amzn2023.0.1.x86_64                                           
+  libnetfilter_conntrack-1.0.8-2.amzn2023.0.2.x86_64                            
+  libnfnetlink-1.0.1-19.amzn2023.0.2.x86_64                                     
+  libnftnl-1.2.2-2.amzn2023.0.2.x86_64                                          
+  libxcrypt-compat-4.4.33-7.amzn2023.x86_64                                     
+  perl-Error-1:0.17030-2.amzn2023.0.1.noarch                                    
+  perl-File-Find-1.37-477.amzn2023.0.8.noarch                                   
+  perl-Git-2.50.1-1.amzn2023.0.1.noarch                                         
+  perl-TermReadKey-2.38-9.amzn2023.0.3.x86_64                                   
+  perl-lib-0.65-477.amzn2023.0.8.x86_64                                         
+  pigz-2.5-1.amzn2023.0.3.x86_64                                                
+  python3-pip-21.3.1-2.amzn2023.0.19.noarch                                     
+  runc-1.3.4-5.amzn2023.0.2.x86_64                                              
+
+Complete!
++ usermod -aG docker ec2-user
++ usermod -aG ne ec2-user
++ '[' -f /etc/nitro_enclaves/allocator.yaml ']'
++ sed -i 's/^[[:space:]]*memory_mib:.*/memory_mib: 2048/' /etc/nitro_enclaves/allocator.yaml
++ sed -i 's/^[[:space:]]*cpu_count:.*/cpu_count: 2/' /etc/nitro_enclaves/allocator.yaml
++ grep -q '^[[:space:]]*memory_mib:' /etc/nitro_enclaves/allocator.yaml
++ grep -q '^[[:space:]]*cpu_count:' /etc/nitro_enclaves/allocator.yaml
++ cat /etc/nitro_enclaves/allocator.yaml
+---
+# Enclave configuration file.
+#
+# How much memory to allocate for enclaves (in MiB).
+memory_mib: 2048
+#
+# How many CPUs to reserve for enclaves.
+cpu_count: 2
+#
+# Alternatively, the exact CPUs to be reserved for the enclave can be explicitly
+# configured by using `cpu_pool` (like below), instead of `cpu_count`.
+# Note: cpu_count and cpu_pool conflict with each other. Only use exactly one of them.
+# Example of reserving CPUs 2, 3, and 6 through 9:
+# cpu_pool: 2,3,6-9
++ modprobe nitro_enclaves
++ systemctl enable --now nitro-enclaves-allocator.service
+Created symlink /etc/systemd/system/multi-user.target.wants/nitro-enclaves-allocator.service → /usr/lib/systemd/system/nitro-enclaves-allocator.service.
++ systemctl enable --now docker.service
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /usr/lib/systemd/system/docker.service.
++ collect_diag /opt/icde-ldp-nitro/results/parent_diagnostics_initial
++ local dir=/opt/icde-ldp-nitro/results/parent_diagnostics_initial
++ mkdir -p /opt/icde-ldp-nitro/results/parent_diagnostics_initial
++ date -u --iso-8601=seconds
++ uname -a
++ cat /etc/os-release
++ aws --version
++ aws sts get-caller-identity --output json
++ lscpu
++ free -m
++ df -h
++ systemctl status docker --no-pager
++ docker --version
++ docker info
++ nitro-cli --version
++ nitro-cli describe-enclaves
++ systemctl status nitro-enclaves-allocator --no-pager
++ journalctl -u nitro-enclaves-allocator --no-pager
++ cp /etc/nitro_enclaves/allocator.yaml /opt/icde-ldp-nitro/results/parent_diagnostics_initial/allocator.yaml
++ ls -l /dev/nitro_enclaves /dev/nsm
++ true
++ cloud-init status --long
++ aws s3 cp s3://dp-auditmarket-nitro-279706066616-us-east-2/nitro-results/icde-ldp-nitro-20260605094208/source/aws_nitro.tgz /opt/icde-ldp-nitro/aws_nitro.tgz
+Completed 5.8 KiB/5.8 KiB (99.5 KiB/s) with 1 file(s) remainingdownload: s3://dp-auditmarket-nitro-279706066616-us-east-2/nitro-results/icde-ldp-nitro-20260605094208/source/aws_nitro.tgz to ./aws_nitro.tgz
++ tar -xzf /opt/icde-ldp-nitro/aws_nitro.tgz -C /opt/icde-ldp-nitro
++ cd /opt/icde-ldp-nitro/aws_nitro
++ python3 parent_host.py --stdio-local --reports 2 --out /opt/icde-ldp-nitro/results/local_smoke.csv --attestation-dir /opt/icde-ldp-nitro/results/local_smoke_attdocs
+Wrote 2 rows to /opt/icde-ldp-nitro/results/local_smoke.csv
++ '[' -f /etc/profile.d/nitro-cli-env.sh ']'
++ true
++ export HOME=/root
++ HOME=/root
++ export NITRO_CLI_ARTIFACTS=/opt/icde-ldp-nitro/nitro_cli_artifacts
++ NITRO_CLI_ARTIFACTS=/opt/icde-ldp-nitro/nitro_cli_artifacts
++ export NITRO_CLI_BLOBS=/usr/share/nitro_enclaves/blobs
++ NITRO_CLI_BLOBS=/usr/share/nitro_enclaves/blobs
++ mkdir -p /opt/icde-ldp-nitro/nitro_cli_artifacts
++ docker build -t ldp-tee-oracle:latest .
++ tee /opt/icde-ldp-nitro/results/docker_build.log
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 830B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.4s
+
+#3 [internal] load metadata for docker.io/library/rust:1.92-slim
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 8.10kB done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203
+#6 resolve docker.io/library/python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203 0.0s done
+#6 sha256:5b4d6ff92fc4e14e911b7753c954fac965d48c40fe1075758d284148ccace970 11.53MB / 29.78MB 0.1s
+#6 sha256:4a9dde5cdde190bfa0a3ab17863a083e66ea9636b157638c315357dfa476ba76 0B / 1.29MB 0.1s
+#6 sha256:e113665b194b20ba7e9093ef6a1a38edbaebbfb983c00e379a45a142a95a86ef 0B / 12.11MB 0.1s
+#6 sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203 10.37kB / 10.37kB done
+#6 sha256:866411c135b507754efdf2fda51484be4d3d7d5173ed53cd083106132e710904 1.75kB / 1.75kB done
+#6 sha256:e1054bc5a9f2ddbdd6d0247997c45f2201a4e9b4c6f824b247064a558e877070 5.65kB / 5.65kB done
+#6 sha256:5b4d6ff92fc4e14e911b7753c954fac965d48c40fe1075758d284148ccace970 29.78MB / 29.78MB 0.2s done
+#6 sha256:4a9dde5cdde190bfa0a3ab17863a083e66ea9636b157638c315357dfa476ba76 1.29MB / 1.29MB 0.2s done
+#6 sha256:e113665b194b20ba7e9093ef6a1a38edbaebbfb983c00e379a45a142a95a86ef 12.11MB / 12.11MB 0.2s done
+#6 extracting sha256:5b4d6ff92fc4e14e911b7753c954fac965d48c40fe1075758d284148ccace970
+#6 sha256:07342fe545e640a2c4960e97ffe33a301cd8e61e0c4d4307d7ac66b6b8a9eb2d 250B / 250B 0.2s done
+#6 extracting sha256:5b4d6ff92fc4e14e911b7753c954fac965d48c40fe1075758d284148ccace970 2.4s done
+#6 extracting sha256:4a9dde5cdde190bfa0a3ab17863a083e66ea9636b157638c315357dfa476ba76
+#6 extracting sha256:4a9dde5cdde190bfa0a3ab17863a083e66ea9636b157638c315357dfa476ba76 0.1s done
+#6 extracting sha256:e113665b194b20ba7e9093ef6a1a38edbaebbfb983c00e379a45a142a95a86ef 0.1s
+#6 extracting sha256:e113665b194b20ba7e9093ef6a1a38edbaebbfb983c00e379a45a142a95a86ef 1.1s done
+#6 extracting sha256:07342fe545e640a2c4960e97ffe33a301cd8e61e0c4d4307d7ac66b6b8a9eb2d done
+#6 DONE 4.2s
+
+#7 [rust-builder 1/6] FROM docker.io/library/rust:1.92-slim@sha256:bf3368a992915f128293ac76917ab6e561e4dda883273c8f5c9f6f8ea37a378e
+#7 resolve docker.io/library/rust:1.92-slim@sha256:bf3368a992915f128293ac76917ab6e561e4dda883273c8f5c9f6f8ea37a378e 0.0s done
+#7 sha256:bf3368a992915f128293ac76917ab6e561e4dda883273c8f5c9f6f8ea37a378e 9.04kB / 9.04kB done
+#7 sha256:ce021d99731cbf433fd565ad0d6da709864ada6ef6db382075ca27d35ceed5c1 1.36kB / 1.36kB done
+#7 sha256:841e10ef6e73e554d57c6ba06f55ef12917635f5924cbed1e7ef1567bc987570 3.46kB / 3.46kB done
+#7 sha256:119d43eec815e5f9a47da3a7d59454581b1e204b0c34db86f171b7ceb3336533 29.77MB / 29.77MB 0.4s done
+#7 sha256:f0f53d56a8e2f1cdac0e47a67c4454c2cf5191bb254a52d8574e7e13b1b0b31e 288.64MB / 288.64MB 3.0s done
+#7 extracting sha256:119d43eec815e5f9a47da3a7d59454581b1e204b0c34db86f171b7ceb3336533 2.2s done
+#7 extracting sha256:f0f53d56a8e2f1cdac0e47a67c4454c2cf5191bb254a52d8574e7e13b1b0b31e 1.2s
+#7 ...
+
+#8 [stage-1 2/4] WORKDIR /app
+#8 DONE 1.4s
+
+#7 [rust-builder 1/6] FROM docker.io/library/rust:1.92-slim@sha256:bf3368a992915f128293ac76917ab6e561e4dda883273c8f5c9f6f8ea37a378e
+#7 ...
+
+#9 [stage-1 3/4] COPY enclave_oracle.py /app/enclave_oracle.py
+#9 DONE 3.1s
+
+#7 [rust-builder 1/6] FROM docker.io/library/rust:1.92-slim@sha256:bf3368a992915f128293ac76917ab6e561e4dda883273c8f5c9f6f8ea37a378e
+#7 extracting sha256:f0f53d56a8e2f1cdac0e47a67c4454c2cf5191bb254a52d8574e7e13b1b0b31e 6.2s done
+#7 DONE 9.4s
+
+#10 [rust-builder 2/6] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates git musl-tools pkg-config     && rm -rf /var/lib/apt/lists/*
+#10 0.276 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#10 0.302 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#10 0.312 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#10 0.323 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9671 kB]
+#10 0.399 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [5412 B]
+#10 0.407 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [207 kB]
+#10 1.184 Fetched 10.1 MB in 1s (10.9 MB/s)
+#10 1.184 Reading package lists...
+#10 1.918 Reading package lists...
+#10 2.629 Building dependency tree...
+#10 2.818 Reading state information...
+#10 3.017 ca-certificates is already the newest version (20250419).
+#10 3.017 The following additional packages will be installed:
+#10 3.019   git-man libbrotli1 libcom-err2 libcurl3t64-gnutls liberror-perl libexpat1
+#10 3.019   libffi8 libgdbm-compat4t64 libgdbm6t64 libgnutls30t64 libgssapi-krb5-2
+#10 3.019   libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2 libnghttp2-14
+#10 3.019   libnghttp3-9 libngtcp2-16 libngtcp2-crypto-gnutls8 libp11-kit0 libperl5.40
+#10 3.021   libpkgconf3 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules-db libssh2-1t64
+#10 3.021   libtasn1-6 musl musl-dev perl perl-modules-5.40 pkgconf pkgconf-bin
+#10 3.023 Suggested packages:
+#10 3.023   gettext-base git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki
+#10 3.023   git-svn gdbm-l10n gnutls-bin krb5-doc krb5-user sensible-utils perl-doc
+#10 3.023   libterm-readline-gnu-perl | libterm-readline-perl-perl make
+#10 3.023   libtap-harness-archive-perl
+#10 3.023 Recommended packages:
+#10 3.023   patch less ssh-client krb5-locales libldap-common publicsuffix
+#10 3.023   libsasl2-modules netbase
+#10 3.227 The following NEW packages will be installed:
+#10 3.228   git git-man libbrotli1 libcom-err2 libcurl3t64-gnutls liberror-perl
+#10 3.228   libexpat1 libffi8 libgdbm-compat4t64 libgdbm6t64 libgnutls30t64
+#10 3.228   libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0
+#10 3.228   libldap2 libnghttp2-14 libnghttp3-9 libngtcp2-16 libngtcp2-crypto-gnutls8
+#10 3.229   libp11-kit0 libperl5.40 libpkgconf3 libpsl5t64 librtmp1 libsasl2-2
+#10 3.230   libsasl2-modules-db libssh2-1t64 libtasn1-6 musl musl-dev musl-tools perl
+#10 3.230   perl-modules-5.40 pkg-config pkgconf pkgconf-bin
+#10 3.265 0 upgraded, 38 newly installed, 0 to remove and 17 not upgraded.
+#10 3.265 Need to get 24.4 MB of archives.
+#10 3.265 After this operation, 121 MB of additional disk space will be used.
+#10 3.265 Get:1 http://deb.debian.org/debian trixie/main amd64 libexpat1 amd64 2.7.1-2 [108 kB]
+#10 3.289 Get:2 http://deb.debian.org/debian trixie/main amd64 perl-modules-5.40 all 5.40.1-6 [3019 kB]
+#10 3.336 Get:3 http://deb.debian.org/debian trixie/main amd64 libgdbm6t64 amd64 1.24-2 [75.2 kB]
+#10 3.337 Get:4 http://deb.debian.org/debian trixie/main amd64 libgdbm-compat4t64 amd64 1.24-2 [50.3 kB]
+#10 3.342 Get:5 http://deb.debian.org/debian trixie/main amd64 libperl5.40 amd64 5.40.1-6 [4341 kB]
+#10 3.375 Get:6 http://deb.debian.org/debian trixie/main amd64 perl amd64 5.40.1-6 [267 kB]
+#10 3.376 Get:7 http://deb.debian.org/debian trixie/main amd64 libbrotli1 amd64 1.1.0-2+b7 [307 kB]
+#10 3.378 Get:8 http://deb.debian.org/debian trixie/main amd64 libffi8 amd64 3.4.8-2 [24.1 kB]
+#10 3.379 Get:9 http://deb.debian.org/debian trixie/main amd64 libp11-kit0 amd64 0.25.5-3 [425 kB]
+#10 3.381 Get:10 http://deb.debian.org/debian trixie/main amd64 libtasn1-6 amd64 4.20.0-2 [49.9 kB]
+#10 3.381 Get:11 http://deb.debian.org/debian-security trixie-security/main amd64 libgnutls30t64 amd64 3.8.9-3+deb13u4 [1469 kB]
+#10 3.384 Get:12 http://deb.debian.org/debian-security trixie-security/main amd64 libkrb5support0 amd64 1.21.3-5+deb13u1 [33.1 kB]
+#10 3.384 Get:13 http://deb.debian.org/debian trixie/main amd64 libcom-err2 amd64 1.47.2-3+b11 [25.0 kB]
+#10 3.385 Get:14 http://deb.debian.org/debian-security trixie-security/main amd64 libk5crypto3 amd64 1.21.3-5+deb13u1 [81.2 kB]
+#10 3.385 Get:15 http://deb.debian.org/debian trixie/main amd64 libkeyutils1 amd64 1.6.3-6 [9456 B]
+#10 3.393 Get:16 http://deb.debian.org/debian-security trixie-security/main amd64 libkrb5-3 amd64 1.21.3-5+deb13u1 [326 kB]
+#10 3.394 Get:17 http://deb.debian.org/debian-security trixie-security/main amd64 libgssapi-krb5-2 amd64 1.21.3-5+deb13u1 [138 kB]
+#10 3.395 Get:18 http://deb.debian.org/debian trixie/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-9 [19.8 kB]
+#10 3.395 Get:19 http://deb.debian.org/debian trixie/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-9 [57.5 kB]
+#10 3.395 Get:20 http://deb.debian.org/debian trixie/main amd64 libldap2 amd64 2.6.10+dfsg-1 [194 kB]
+#10 3.401 Get:21 http://deb.debian.org/debian-security trixie-security/main amd64 libnghttp2-14 amd64 1.64.0-1.1+deb13u1 [76.2 kB]
+#10 3.402 Get:22 http://deb.debian.org/debian trixie/main amd64 libnghttp3-9 amd64 1.8.0-1 [67.7 kB]
+#10 3.402 Get:23 http://deb.debian.org/debian trixie/main amd64 libngtcp2-16 amd64 1.11.0-1+deb13u1 [132 kB]
+#10 3.403 Get:24 http://deb.debian.org/debian trixie/main amd64 libngtcp2-crypto-gnutls8 amd64 1.11.0-1+deb13u1 [29.5 kB]
+#10 3.404 Get:25 http://deb.debian.org/debian trixie/main amd64 libpsl5t64 amd64 0.21.2-1.1+b1 [57.2 kB]
+#10 3.410 Get:26 http://deb.debian.org/debian trixie/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b5 [58.8 kB]
+#10 3.410 Get:27 http://deb.debian.org/debian trixie/main amd64 libssh2-1t64 amd64 1.11.1-1 [245 kB]
+#10 3.411 Get:28 http://deb.debian.org/debian trixie/main amd64 libcurl3t64-gnutls amd64 8.14.1-2+deb13u3 [384 kB]
+#10 3.413 Get:29 http://deb.debian.org/debian trixie/main amd64 liberror-perl all 0.17030-1 [26.9 kB]
+#10 3.413 Get:30 http://deb.debian.org/debian trixie/main amd64 git-man all 1:2.47.3-0+deb13u1 [2205 kB]
+#10 3.421 Get:31 http://deb.debian.org/debian trixie/main amd64 git amd64 1:2.47.3-0+deb13u1 [8862 kB]
+#10 3.450 Get:32 http://deb.debian.org/debian trixie/main amd64 libpkgconf3 amd64 1.8.1-4 [36.4 kB]
+#10 3.456 Get:33 http://deb.debian.org/debian trixie/main amd64 musl amd64 1.2.5-3.1~deb13u1 [428 kB]
+#10 3.460 Get:34 http://deb.debian.org/debian trixie/main amd64 musl-dev amd64 1.2.5-3.1~deb13u1 [616 kB]
+#10 3.483 Get:35 http://deb.debian.org/debian trixie/main amd64 musl-tools amd64 1.2.5-3.1~deb13u1 [41.9 kB]
+#10 3.485 Get:36 http://deb.debian.org/debian trixie/main amd64 pkgconf-bin amd64 1.8.1-4 [30.2 kB]
+#10 3.489 Get:37 http://deb.debian.org/debian trixie/main amd64 pkgconf amd64 1.8.1-4 [26.2 kB]
+#10 3.490 Get:38 http://deb.debian.org/debian trixie/main amd64 pkg-config amd64 1.8.1-4 [14.0 kB]
+#10 3.617 debconf: unable to initialize frontend: Dialog
+#10 3.617 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#10 3.617 debconf: falling back to frontend: Readline
+#10 3.618 debconf: unable to initialize frontend: Readline
+#10 3.618 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 38.)
+#10 3.618 debconf: falling back to frontend: Teletype
+#10 3.633 debconf: unable to initialize frontend: Teletype
+#10 3.633 debconf: (This frontend requires a controlling tty.)
+#10 3.633 debconf: falling back to frontend: Noninteractive
+#10 4.723 Fetched 24.4 MB in 0s (96.5 MB/s)
+#10 4.748 Selecting previously unselected package libexpat1:amd64.
+#10 4.748 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9595 files and directories currently installed.)
+#10 4.754 Preparing to unpack .../00-libexpat1_2.7.1-2_amd64.deb ...
+#10 4.764 Unpacking libexpat1:amd64 (2.7.1-2) ...
+#10 4.797 Selecting previously unselected package perl-modules-5.40.
+#10 4.798 Preparing to unpack .../01-perl-modules-5.40_5.40.1-6_all.deb ...
+#10 4.803 Unpacking perl-modules-5.40 (5.40.1-6) ...
+#10 5.067 Selecting previously unselected package libgdbm6t64:amd64.
+#10 5.070 Preparing to unpack .../02-libgdbm6t64_1.24-2_amd64.deb ...
+#10 5.075 Unpacking libgdbm6t64:amd64 (1.24-2) ...
+#10 5.111 Selecting previously unselected package libgdbm-compat4t64:amd64.
+#10 5.112 Preparing to unpack .../03-libgdbm-compat4t64_1.24-2_amd64.deb ...
+#10 5.117 Unpacking libgdbm-compat4t64:amd64 (1.24-2) ...
+#10 5.151 Selecting previously unselected package libperl5.40:amd64.
+#10 5.153 Preparing to unpack .../04-libperl5.40_5.40.1-6_amd64.deb ...
+#10 5.158 Unpacking libperl5.40:amd64 (5.40.1-6) ...
+#10 5.443 Selecting previously unselected package perl.
+#10 5.445 Preparing to unpack .../05-perl_5.40.1-6_amd64.deb ...
+#10 5.450 Unpacking perl (5.40.1-6) ...
+#10 5.500 Selecting previously unselected package libbrotli1:amd64.
+#10 5.502 Preparing to unpack .../06-libbrotli1_1.1.0-2+b7_amd64.deb ...
+#10 5.507 Unpacking libbrotli1:amd64 (1.1.0-2+b7) ...
+#10 5.555 Selecting previously unselected package libffi8:amd64.
+#10 5.558 Preparing to unpack .../07-libffi8_3.4.8-2_amd64.deb ...
+#10 5.564 Unpacking libffi8:amd64 (3.4.8-2) ...
+#10 5.597 Selecting previously unselected package libp11-kit0:amd64.
+#10 5.599 Preparing to unpack .../08-libp11-kit0_0.25.5-3_amd64.deb ...
+#10 5.603 Unpacking libp11-kit0:amd64 (0.25.5-3) ...
+#10 5.653 Selecting previously unselected package libtasn1-6:amd64.
+#10 5.655 Preparing to unpack .../09-libtasn1-6_4.20.0-2_amd64.deb ...
+#10 5.659 Unpacking libtasn1-6:amd64 (4.20.0-2) ...
+#10 5.702 Selecting previously unselected package libgnutls30t64:amd64.
+#10 5.704 Preparing to unpack .../10-libgnutls30t64_3.8.9-3+deb13u4_amd64.deb ...
+#10 5.709 Unpacking libgnutls30t64:amd64 (3.8.9-3+deb13u4) ...
+#10 5.785 Selecting previously unselected package libkrb5support0:amd64.
+#10 5.790 Preparing to unpack .../11-libkrb5support0_1.21.3-5+deb13u1_amd64.deb ...
+#10 5.796 Unpacking libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#10 5.830 Selecting previously unselected package libcom-err2:amd64.
+#10 5.832 Preparing to unpack .../12-libcom-err2_1.47.2-3+b11_amd64.deb ...
+#10 5.837 Unpacking libcom-err2:amd64 (1.47.2-3+b11) ...
+#10 5.869 Selecting previously unselected package libk5crypto3:amd64.
+#10 5.871 Preparing to unpack .../13-libk5crypto3_1.21.3-5+deb13u1_amd64.deb ...
+#10 5.876 Unpacking libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#10 5.912 Selecting previously unselected package libkeyutils1:amd64.
+#10 5.920 Preparing to unpack .../14-libkeyutils1_1.6.3-6_amd64.deb ...
+#10 5.928 Unpacking libkeyutils1:amd64 (1.6.3-6) ...
+#10 5.961 Selecting previously unselected package libkrb5-3:amd64.
+#10 5.963 Preparing to unpack .../15-libkrb5-3_1.21.3-5+deb13u1_amd64.deb ...
+#10 5.967 Unpacking libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#10 6.019 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#10 6.028 Preparing to unpack .../16-libgssapi-krb5-2_1.21.3-5+deb13u1_amd64.deb ...
+#10 6.032 Unpacking libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#10 6.062 Selecting previously unselected package libsasl2-modules-db:amd64.
+#10 6.063 Preparing to unpack .../17-libsasl2-modules-db_2.1.28+dfsg1-9_amd64.deb ...
+#10 6.068 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#10 6.099 Selecting previously unselected package libsasl2-2:amd64.
+#10 6.100 Preparing to unpack .../18-libsasl2-2_2.1.28+dfsg1-9_amd64.deb ...
+#10 6.105 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#10 6.140 Selecting previously unselected package libldap2:amd64.
+#10 6.150 Preparing to unpack .../19-libldap2_2.6.10+dfsg-1_amd64.deb ...
+#10 6.158 Unpacking libldap2:amd64 (2.6.10+dfsg-1) ...
+#10 6.199 Selecting previously unselected package libnghttp2-14:amd64.
+#10 6.200 Preparing to unpack .../20-libnghttp2-14_1.64.0-1.1+deb13u1_amd64.deb ...
+#10 6.205 Unpacking libnghttp2-14:amd64 (1.64.0-1.1+deb13u1) ...
+#10 6.241 Selecting previously unselected package libnghttp3-9:amd64.
+#10 6.249 Preparing to unpack .../21-libnghttp3-9_1.8.0-1_amd64.deb ...
+#10 6.253 Unpacking libnghttp3-9:amd64 (1.8.0-1) ...
+#10 6.289 Selecting previously unselected package libngtcp2-16:amd64.
+#10 6.290 Preparing to unpack .../22-libngtcp2-16_1.11.0-1+deb13u1_amd64.deb ...
+#10 6.294 Unpacking libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
+#10 6.331 Selecting previously unselected package libngtcp2-crypto-gnutls8:amd64.
+#10 6.333 Preparing to unpack .../23-libngtcp2-crypto-gnutls8_1.11.0-1+deb13u1_amd64.deb ...
+#10 6.337 Unpacking libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
+#10 6.371 Selecting previously unselected package libpsl5t64:amd64.
+#10 6.373 Preparing to unpack .../24-libpsl5t64_0.21.2-1.1+b1_amd64.deb ...
+#10 6.384 Unpacking libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#10 6.418 Selecting previously unselected package librtmp1:amd64.
+#10 6.419 Preparing to unpack .../25-librtmp1_2.4+20151223.gitfa8646d.1-2+b5_amd64.deb ...
+#10 6.424 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#10 6.458 Selecting previously unselected package libssh2-1t64:amd64.
+#10 6.459 Preparing to unpack .../26-libssh2-1t64_1.11.1-1_amd64.deb ...
+#10 6.464 Unpacking libssh2-1t64:amd64 (1.11.1-1) ...
+#10 6.504 Selecting previously unselected package libcurl3t64-gnutls:amd64.
+#10 6.506 Preparing to unpack .../27-libcurl3t64-gnutls_8.14.1-2+deb13u3_amd64.deb ...
+#10 6.518 Unpacking libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
+#10 6.557 Selecting previously unselected package liberror-perl.
+#10 6.559 Preparing to unpack .../28-liberror-perl_0.17030-1_all.deb ...
+#10 6.563 Unpacking liberror-perl (0.17030-1) ...
+#10 6.589 Selecting previously unselected package git-man.
+#10 6.591 Preparing to unpack .../29-git-man_1%3a2.47.3-0+deb13u1_all.deb ...
+#10 6.596 Unpacking git-man (1:2.47.3-0+deb13u1) ...
+#10 6.670 Selecting previously unselected package git.
+#10 6.683 Preparing to unpack .../30-git_1%3a2.47.3-0+deb13u1_amd64.deb ...
+#10 6.691 Unpacking git (1:2.47.3-0+deb13u1) ...
+#10 7.047 Selecting previously unselected package libpkgconf3:amd64.
+#10 7.050 Preparing to unpack .../31-libpkgconf3_1.8.1-4_amd64.deb ...
+#10 7.054 Unpacking libpkgconf3:amd64 (1.8.1-4) ...
+#10 7.085 Selecting previously unselected package musl:amd64.
+#10 7.086 Preparing to unpack .../32-musl_1.2.5-3.1~deb13u1_amd64.deb ...
+#10 7.091 Unpacking musl:amd64 (1.2.5-3.1~deb13u1) ...
+#10 7.140 Selecting previously unselected package musl-dev:amd64.
+#10 7.142 Preparing to unpack .../33-musl-dev_1.2.5-3.1~deb13u1_amd64.deb ...
+#10 7.146 Unpacking musl-dev:amd64 (1.2.5-3.1~deb13u1) ...
+#10 7.207 Selecting previously unselected package musl-tools.
+#10 7.219 Preparing to unpack .../34-musl-tools_1.2.5-3.1~deb13u1_amd64.deb ...
+#10 7.224 Unpacking musl-tools (1.2.5-3.1~deb13u1) ...
+#10 7.255 Selecting previously unselected package pkgconf-bin.
+#10 7.256 Preparing to unpack .../35-pkgconf-bin_1.8.1-4_amd64.deb ...
+#10 7.261 Unpacking pkgconf-bin (1.8.1-4) ...
+#10 7.296 Selecting previously unselected package pkgconf:amd64.
+#10 7.298 Preparing to unpack .../36-pkgconf_1.8.1-4_amd64.deb ...
+#10 7.303 Unpacking pkgconf:amd64 (1.8.1-4) ...
+#10 7.336 Selecting previously unselected package pkg-config:amd64.
+#10 7.344 Preparing to unpack .../37-pkg-config_1.8.1-4_amd64.deb ...
+#10 7.352 Unpacking pkg-config:amd64 (1.8.1-4) ...
+#10 7.386 Setting up libexpat1:amd64 (2.7.1-2) ...
+#10 7.400 Setting up libkeyutils1:amd64 (1.6.3-6) ...
+#10 7.413 Setting up libgdbm6t64:amd64 (1.24-2) ...
+#10 7.427 Setting up libgdbm-compat4t64:amd64 (1.24-2) ...
+#10 7.439 Setting up libbrotli1:amd64 (1.1.0-2+b7) ...
+#10 7.458 Setting up libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#10 7.471 Setting up libnghttp2-14:amd64 (1.64.0-1.1+deb13u1) ...
+#10 7.484 Setting up libcom-err2:amd64 (1.47.2-3+b11) ...
+#10 7.497 Setting up libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#10 7.510 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#10 7.524 Setting up libpkgconf3:amd64 (1.8.1-4) ...
+#10 7.537 Setting up pkgconf-bin (1.8.1-4) ...
+#10 7.551 Setting up libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#10 7.572 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#10 7.585 Setting up libnghttp3-9:amd64 (1.8.0-1) ...
+#10 7.599 Setting up libffi8:amd64 (3.4.8-2) ...
+#10 7.613 Setting up perl-modules-5.40 (5.40.1-6) ...
+#10 7.626 Setting up musl:amd64 (1.2.5-3.1~deb13u1) ...
+#10 7.649 Setting up libtasn1-6:amd64 (4.20.0-2) ...
+#10 7.663 Setting up git-man (1:2.47.3-0+deb13u1) ...
+#10 7.683 Setting up libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
+#10 7.696 Setting up libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#10 7.709 Setting up libssh2-1t64:amd64 (1.11.1-1) ...
+#10 7.722 Setting up libldap2:amd64 (2.6.10+dfsg-1) ...
+#10 7.736 Setting up pkgconf:amd64 (1.8.1-4) ...
+#10 7.749 Setting up libperl5.40:amd64 (5.40.1-6) ...
+#10 7.762 Setting up musl-dev:amd64 (1.2.5-3.1~deb13u1) ...
+#10 7.776 Setting up perl (5.40.1-6) ...
+#10 7.802 Setting up libp11-kit0:amd64 (0.25.5-3) ...
+#10 7.816 Setting up libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#10 7.831 Setting up pkg-config:amd64 (1.8.1-4) ...
+#10 7.844 Setting up libgnutls30t64:amd64 (3.8.9-3+deb13u4) ...
+#10 7.857 Setting up liberror-perl (0.17030-1) ...
+#10 7.869 Setting up musl-tools (1.2.5-3.1~deb13u1) ...
+#10 7.882 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#10 7.900 Setting up libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
+#10 7.914 Setting up libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
+#10 7.928 Setting up git (1:2.47.3-0+deb13u1) ...
+#10 7.950 Processing triggers for libc-bin (2.41-12+deb13u1) ...
+#10 DONE 10.4s
+
+#11 [rust-builder 3/6] WORKDIR /build
+#11 DONE 0.0s
+
+#12 [rust-builder 4/6] COPY Cargo.toml /build/Cargo.toml
+#12 DONE 0.0s
+
+#13 [rust-builder 5/6] COPY src/get_attestation_doc.rs /build/src/get_attestation_doc.rs
+#13 DONE 0.0s
+
+#14 [rust-builder 6/6] RUN rustup target install x86_64-unknown-linux-musl     && cargo build --release --target=x86_64-unknown-linux-musl --bin get_attestation_doc
+#14 0.361 info: downloading component 'rust-std' for 'x86_64-unknown-linux-musl'
+#14 0.707 info: installing component 'rust-std' for 'x86_64-unknown-linux-musl'
+#14 3.573     Updating git repository `https://github.com/aws/aws-nitro-enclaves-nsm-api.git`
+#14 3.757     Updating crates.io index
+#14 3.925      Locking 18 packages to latest compatible versions
+#14 3.930  Downloading crates ...
+#14 3.980   Downloaded cfg_aliases v0.2.1
+#14 3.985   Downloaded cfg-if v1.0.4
+#14 3.992   Downloaded proc-macro2 v1.0.106
+#14 4.000   Downloaded serde_bytes v0.11.19
+#14 4.002   Downloaded half v1.8.3
+#14 4.012   Downloaded quote v1.0.45
+#14 4.017   Downloaded serde_cbor v0.11.2
+#14 4.020   Downloaded log v0.4.32
+#14 4.023   Downloaded unicode-ident v1.0.24
+#14 4.025   Downloaded serde v1.0.228
+#14 4.039   Downloaded serde_core v1.0.228
+#14 4.042   Downloaded base64 v0.22.1
+#14 4.045   Downloaded serde_derive v1.0.228
+#14 4.048   Downloaded bitflags v2.12.1
+#14 4.052   Downloaded syn v2.0.117
+#14 4.061   Downloaded nix v0.31.3
+#14 4.071   Downloaded libc v0.2.186
+#14 4.116    Compiling proc-macro2 v1.0.106
+#14 4.116    Compiling quote v1.0.45
+#14 4.229    Compiling unicode-ident v1.0.24
+#14 4.305    Compiling serde_core v1.0.228
+#14 5.077    Compiling syn v2.0.117
+#14 6.903    Compiling serde v1.0.228
+#14 7.043    Compiling libc v0.2.186
+#14 7.254    Compiling cfg_aliases v0.2.1
+#14 7.278    Compiling nix v0.31.3
+#14 7.507    Compiling serde_derive v1.0.228
+#14 9.067    Compiling half v1.8.3
+#14 9.440    Compiling cfg-if v1.0.4
+#14 9.464    Compiling bitflags v2.12.1
+#14 10.10    Compiling serde_bytes v0.11.19
+#14 10.29    Compiling log v0.4.32
+#14 10.45    Compiling base64 v0.22.1
+#14 10.97    Compiling serde_cbor v0.11.2
+#14 11.34    Compiling aws-nitro-enclaves-nsm-api v0.5.1 (https://github.com/aws/aws-nitro-enclaves-nsm-api.git?rev=8785071d7f9414d28b4b03d02b74ea470386c4ee#8785071d)
+#14 15.71    Compiling ldp_tee_oracle_nsm v0.1.0 (/build)
+#14 15.95     Finished `release` profile [optimized] target(s) in 12.41s
+#14 DONE 16.1s
+
+#15 [stage-1 4/4] COPY --from=rust-builder /build/target/x86_64-unknown-linux-musl/release/get_attestation_doc /app/get_attestation_doc
+#15 DONE 0.1s
+
+#16 exporting to image
+#16 exporting layers 0.1s done
+#16 writing image sha256:454a63e9b92f10e0a125ca0a330b14464a4acaff1ebb54038d2bbb3235f5b66d done
+#16 naming to docker.io/library/ldp-tee-oracle:latest done
+#16 DONE 0.1s
++ nitro-cli build-enclave --docker-uri ldp-tee-oracle:latest --output-file /opt/icde-ldp-nitro/ldp-tee-oracle.eif
++ tee /opt/icde-ldp-nitro/results/eif_build.txt
+Start building the Enclave Image...
+Using the locally available Docker image...
+Enclave Image successfully created.
+{
+  "Measurements": {
+    "HashAlgorithm": "Sha384 { ... }",
+    "PCR0": "faa4049abc744d3bab5750a08abcd59423be3e725d2348b143d05760f628a7b969ab2c68472e30749c16846b806d1cbf",
+    "PCR1": "4b4d5b3661b3efc12920900c80e126e4ce783c522de6c02a2a5bf7af3a2b9327b86776f188e4be1c1c404a129dbda493",
+    "PCR2": "5e84099a8c256b8cb9edb4a00c0554d2b66681ab19e5e16d9a6ea40d03f0e71b65b5089c616a904dc3d0b4370ebd5e0d"
+  }
+}
++ sha256sum /opt/icde-ldp-nitro/ldp-tee-oracle.eif
++ cp /opt/icde-ldp-nitro/ldp-tee-oracle.eif /opt/icde-ldp-nitro/results/ldp-tee-oracle.eif
++ nitro-cli run-enclave --eif-path /opt/icde-ldp-nitro/ldp-tee-oracle.eif --cpu-count 2 --memory 2048 --enclave-cid 16
+Start allocating memory...
+Started enclave with enclave-cid: 16, memory: 2048 MiB, cpu-ids: [1, 3]
++ sleep 8
++ nitro-cli describe-enclaves
++ python3 parent_host.py --cid 16 --port 5000 --reports 50 --epsilon-h 0.5 --epsilon-c 2.0 --lambda 0.1 --out /opt/icde-ldp-nitro/results/nitro_measurements.csv --attestation-dir /opt/icde-ldp-nitro/results/attestation_docs
+Wrote 50 rows to /opt/icde-ldp-nitro/results/nitro_measurements.csv
++ python3 -
++ cat
++ cleanup_and_upload
++ set +e
++ nitro-cli terminate-enclave --all
++ collect_diag /opt/icde-ldp-nitro/results/parent_diagnostics_final
++ local dir=/opt/icde-ldp-nitro/results/parent_diagnostics_final
++ mkdir -p /opt/icde-ldp-nitro/results/parent_diagnostics_final
++ date -u --iso-8601=seconds
++ uname -a
++ cat /etc/os-release
++ aws --version
++ aws sts get-caller-identity --output json
++ lscpu
++ free -m
++ df -h
++ systemctl status docker --no-pager
++ docker --version
++ docker info
++ nitro-cli --version
++ nitro-cli describe-enclaves
++ systemctl status nitro-enclaves-allocator --no-pager
++ journalctl -u nitro-enclaves-allocator --no-pager
++ cp /etc/nitro_enclaves/allocator.yaml /opt/icde-ldp-nitro/results/parent_diagnostics_final/allocator.yaml
++ ls -l /dev/nitro_enclaves /dev/nsm
++ true
++ cloud-init status --long
++ cp /var/log/icde-ldp-nitro.log /opt/icde-ldp-nitro/results/icde-ldp-nitro.log

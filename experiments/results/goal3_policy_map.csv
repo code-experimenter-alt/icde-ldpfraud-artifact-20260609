@@ -1,0 +1,6 @@
+premium_bucket,premium_upper,k_bits,deadline_sec,deadline_accept_prob,action
+baseline honest,0.0,15,0.2,0.997775,accept
+small premium,5.0,15,0.5,1.000000,accept
+medium premium,15.0,17,1.0,0.999517,accept
+large premium,30.0,20,2.0,0.851729,accept
+extreme premium,45.0,23,2.0,0.212262,deposit_or_reject

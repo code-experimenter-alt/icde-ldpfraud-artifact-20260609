@@ -1,0 +1,13 @@
+[package]
+name = "ldp_tee_oracle_nsm"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "get_attestation_doc"
+path = "src/get_attestation_doc.rs"
+
+[dependencies]
+aws-nitro-enclaves-nsm-api = { git = "https://github.com/aws/aws-nitro-enclaves-nsm-api.git", rev = "8785071d7f9414d28b4b03d02b74ea470386c4ee" }
+base64 = "0.22"
+serde_bytes = "0.11"

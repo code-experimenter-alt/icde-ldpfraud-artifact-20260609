@@ -1,0 +1,6 @@
+{
+  "price_per_hour_usd": 0.192,
+  "primary_table_model_only": false,
+  "rows": 5,
+  "source": "measured-aws-nitro-packaged-aggregate:icde-ldp-nitro-scale-20260606040525"
+}

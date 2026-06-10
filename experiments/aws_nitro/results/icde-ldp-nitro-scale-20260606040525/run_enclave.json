@@ -1,0 +1,16 @@
+$ nitro-cli run-enclave --eif-path /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/ldp-tee-oracle.eif --cpu-count 2 --memory 2048 --enclave-cid 16
+Start allocating memory...
+Started enclave with enclave-cid: 16, memory: 2048 MiB, cpu-ids: [1, 3]
+{
+  "EnclaveName": "ldp-tee-oracle",
+  "EnclaveID": "i-08d4cc7ab392f3033-enc19e9b1b72c264bd",
+  "ProcessID": 29923,
+  "EnclaveCID": 16,
+  "NumberOfCPUs": 2,
+  "CPUIDs": [
+    1,
+    3
+  ],
+  "MemoryMiB": 2048
+}
+[exit 0]

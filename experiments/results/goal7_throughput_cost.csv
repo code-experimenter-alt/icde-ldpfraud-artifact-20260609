@@ -1,0 +1,6 @@
+phase,mechanism,concurrency,batch_size,reports,k_bits,accepted_rps,rejected_rps,p50_latency_ms,p95_latency_ms,p99_latency_ms,oracle_mean_ms,attestation_mean_ms,pow_mean_ms,timeout_fraction,cpu_utilization,memory_utilization,cost_per_million_usd,source
+phase_direct_1m_k0,DirectAttest,8,128,1000000,0,666.635,0.000,11.036,18.877,23.833,6.296,6.127,0.000,0.0000,not_collected,not_collected,0.08000,measured-aws-nitro:icde-ldp-nitro-scale-20260606040525
+phase_teeonly_1m_k0,TEEOnly,8,128,1000000,0,666.702,0.000,11.047,18.904,23.853,6.266,6.097,0.000,0.0000,not_collected,not_collected,0.08000,measured-aws-nitro:icde-ldp-nitro-scale-20260606040525
+phase_teepow_250k_pow15,TEE-PoW,8,128,250000,15,29.418,0.000,222.103,643.367,946.734,2.241,2.146,158.364,0.0000,not_collected,not_collected,1.81295,measured-aws-nitro:icde-ldp-nitro-scale-20260606040525
+phase_hybrid_500k_pow14,Deposit+PoW,8,128,500000,14,57.474,0.000,119.053,305.199,432.504,2.469,2.379,63.052,0.0000,not_collected,not_collected,0.92796,measured-aws-nitro:icde-ldp-nitro-scale-20260606040525
+phase_correctness_10k_pow15,TEE-PoW,4,128,10000,15,29.463,0.000,84.498,264.864,384.639,2.685,2.547,72.873,0.0000,not_collected,not_collected,1.81018,measured-aws-nitro:icde-ldp-nitro-scale-20260606040525

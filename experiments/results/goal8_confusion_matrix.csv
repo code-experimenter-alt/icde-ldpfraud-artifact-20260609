@@ -1,0 +1,9 @@
+case,full_verifier,no_counter_check,no_pcr_check,no_pow_binding
+valid fresh,accept,accept,accept,accept
+stale counter,reject,accept,reject,reject
+mismatched PCR,reject,reject,accept,reject
+modified k,reject,reject,reject,accept
+modified report commitment,reject,reject,reject,reject
+expired verifier nonce,reject,reject,reject,reject
+false raw input,unsupported,unsupported,unsupported,unsupported
+Sybil seller,unsupported,unsupported,unsupported,unsupported

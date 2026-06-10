@@ -1,0 +1,7 @@
+mechanism,leakage_bits,accepted_fraud_rate,buyer_utility,requires_exact_epsilon
+DirectAttest,4.000,0.000000,96.8000,1
+TEEOnly,1.550,0.430000,81.2000,0
+AuditSlash,1.550,0.150000,90.4000,0
+StrongDeposit,1.550,0.050000,94.7000,0
+TEE-PoW,1.900,0.120000,91.6000,0
+Deposit+PoW,1.900,0.060000,94.1000,0

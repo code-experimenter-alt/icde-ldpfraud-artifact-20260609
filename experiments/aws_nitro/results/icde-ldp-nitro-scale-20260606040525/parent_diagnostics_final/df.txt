@@ -1,0 +1,8 @@
+Filesystem        Size  Used Avail Use% Mounted on
+devtmpfs          4.0M     0  4.0M   0% /dev
+tmpfs             7.7G     0  7.7G   0% /dev/shm
+tmpfs             3.1G  476K  3.1G   1% /run
+/dev/nvme0n1p1     80G  5.0G   76G   7% /
+tmpfs             7.7G  159M  7.6G   3% /tmp
+/dev/nvme0n1p128   10M  1.3M  8.7M  13% /boot/efi
+overlay            80G  5.0G   76G   7% /var/lib/docker/overlay2/d131503a5c3dbb91377d0cdb518d8dfc4bbbb8387bf6a20096634cc1d6bd68d2/merged

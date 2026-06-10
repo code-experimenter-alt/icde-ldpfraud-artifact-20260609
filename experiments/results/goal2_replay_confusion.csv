@@ -1,0 +1,8 @@
+case,full_verifier,no_counter_check,no_pcr_check,no_pow_binding,reason,source
+valid fresh report,accept,accept,accept,accept,"fresh counter, expected PCRs, bound PoW",mutation tests over icde-ldp-nitro-20260605094208 response metadata
+stale counter,reject,accept,reject,reject,counter freshness check,mutation tests over icde-ldp-nitro-20260605094208 response metadata
+expired verifier nonce,reject,reject,reject,reject,nonce freshness check,mutation tests over icde-ldp-nitro-20260605094208 response metadata
+mismatched PCR,reject,reject,accept,reject,PCR allow-list check,mutation tests over icde-ldp-nitro-20260605094208 response metadata
+modified k,reject,reject,reject,accept,PoW target binding check,mutation tests over icde-ldp-nitro-20260605094208 response metadata
+modified report commitment,reject,reject,reject,reject,attested commitment check,mutation tests over icde-ldp-nitro-20260605094208 response metadata
+replayed attestation document,reject,accept,reject,reject,counter and nonce replay checks,mutation tests over icde-ldp-nitro-20260605094208 response metadata

@@ -1,0 +1,12 @@
+{
+  "EnclaveName": "ldp-tee-oracle",
+  "EnclaveID": "i-03b9d9a75887eec9b-enc19e972b479b191c",
+  "ProcessID": 30018,
+  "EnclaveCID": 16,
+  "NumberOfCPUs": 2,
+  "CPUIDs": [
+    1,
+    3
+  ],
+  "MemoryMiB": 2048
+}

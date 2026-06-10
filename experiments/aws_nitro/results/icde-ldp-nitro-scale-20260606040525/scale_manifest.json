@@ -1,0 +1,81 @@
+{
+  "finished_utc": "2026-06-06T09:57:04.463897+00:00",
+  "phases": [
+    {
+      "batch_size": 128,
+      "epsilon_c": 2.0,
+      "epsilon_h": 0.5,
+      "k0": 12,
+      "lambda": 0.1,
+      "mechanism": "TEE-PoW",
+      "phase": "phase_correctness_10k_pow15",
+      "reports": 10000,
+      "retain_every": 1,
+      "retain_first": 0,
+      "skip_pow": false,
+      "workers": 4
+    },
+    {
+      "batch_size": 128,
+      "epsilon_c": 2.0,
+      "epsilon_h": 2.0,
+      "k0": 0,
+      "lambda": 0.0,
+      "mechanism": "DirectAttest",
+      "phase": "phase_direct_1m_k0",
+      "reports": 1000000,
+      "retain_every": 10000,
+      "retain_first": 16,
+      "skip_pow": true,
+      "workers": 8
+    },
+    {
+      "batch_size": 128,
+      "epsilon_c": 2.0,
+      "epsilon_h": 0.5,
+      "k0": 0,
+      "lambda": 0.0,
+      "mechanism": "TEEOnly",
+      "phase": "phase_teeonly_1m_k0",
+      "reports": 1000000,
+      "retain_every": 10000,
+      "retain_first": 16,
+      "skip_pow": true,
+      "workers": 8
+    },
+    {
+      "batch_size": 128,
+      "epsilon_c": 2.0,
+      "epsilon_h": 0.5,
+      "k0": 12,
+      "lambda": 0.1,
+      "mechanism": "TEE-PoW",
+      "phase": "phase_teepow_250k_pow15",
+      "reports": 250000,
+      "retain_every": 10000,
+      "retain_first": 16,
+      "skip_pow": false,
+      "workers": 8
+    },
+    {
+      "batch_size": 128,
+      "epsilon_c": 2.0,
+      "epsilon_h": 0.5,
+      "k0": 14,
+      "lambda": 0.0,
+      "mechanism": "Deposit+PoW",
+      "phase": "phase_hybrid_500k_pow14",
+      "reports": 500000,
+      "retain_every": 10000,
+      "retain_first": 16,
+      "skip_pow": false,
+      "workers": 8
+    }
+  ],
+  "profile": "standard",
+  "resumed_after_ssm_timeout": true,
+  "run_id": "icde-ldp-nitro-scale-20260606040525",
+  "started_utc": "2026-06-06T04:05:25.681439+00:00",
+  "wall_time_sec": 21098.782458,
+  "workdir": "/opt/icde-ldp-nitro"
+}

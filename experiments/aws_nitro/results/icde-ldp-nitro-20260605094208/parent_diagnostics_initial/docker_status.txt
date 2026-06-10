@@ -1,0 +1,22 @@
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-06-05 09:43:34 UTC; 1s ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+    Process: 6985 ExecStartPre=/bin/mkdir -p /run/docker (code=exited, status=0/SUCCESS)
+    Process: 6989 ExecStartPre=/usr/libexec/docker/docker-setup-runtimes.sh (code=exited, status=0/SUCCESS)
+   Main PID: 6995 (dockerd)
+      Tasks: 9
+     Memory: 30.0M
+        CPU: 274ms
+     CGroup: /system.slice/docker.service
+             └─6995 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=32768:65536
+
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal systemd[1]: Starting docker.service - Docker Application Container Engine...
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.092042317Z" level=info msg="Starting up"
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.134873390Z" level=info msg="Loading containers: start."
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.505511599Z" level=info msg="Loading containers: done."
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.526047135Z" level=info msg="Docker daemon" commit=d334795 containerd-snapshotter=false storage-driver=overlay2 version=25.0.14
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.526176118Z" level=info msg="Daemon has completed initialization"
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal dockerd[6995]: time="2026-06-05T09:43:34.567762434Z" level=info msg="API listen on /run/docker.sock"
+Jun 05 09:43:34 ip-172-31-3-92.us-east-2.compute.internal systemd[1]: Started docker.service - Docker Application Container Engine.

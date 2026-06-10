@@ -1,0 +1,9 @@
+regime,public_signal,disclosure_bits,max_hidden_premium,ic_coverage,accepted_fraud_rate,mean_latency_ms,interpretation
+DirectAttest,exact epsilon_h,4.000,0.000,1.000000,0.000000,5.70,strongest exact-disclosure baseline
+RejectMismatch,exact epsilon_h plus mismatch rejection,4.000,0.000,1.000000,0.000000,5.90,strict budget-integrity gate
+TEEOnly,coarse quality class,1.600,31.800,0.280000,0.540000,6.20,class-boundary gaming remains possible
+AuditSlash,coarse class plus probabilistic audit,1.600,13.400,0.760000,0.160000,8.10,audit risk deters large hidden gaps
+StrongDeposit,coarse class plus full deposit,1.600,0.000,1.000000,0.050000,7.60,low-latency deterrence when escrow is available
+ReputationOnly,coarse class plus repeated-market penalty,1.600,18.200,0.680000,0.220000,6.40,depends on continuation value
+TEE-PoW,coarse class plus sealed PoW,1.900,7.100,0.933333,0.140000,41.00,monetary-free deterrence with higher latency
+Deposit+PoW,coarse class plus hybrid signal,1.900,3.400,0.946667,0.060000,24.60,best disclosure-deterrence-latency balance

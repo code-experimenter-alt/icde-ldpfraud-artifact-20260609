@@ -1,0 +1,14 @@
+metric,value
+run_id,icde-ldp-nitro-20260605094208
+reports,50
+k_bits,15
+oracle_mean_ms,2.212551
+oracle_p95_ms,2.325037
+attest_mean_ms,2.103144
+attest_p95_ms,2.215353
+vsock_mean_ms,3.370097
+vsock_p95_ms,3.713157
+pow_mean_ms,32.744573
+pow_median_ms,26.066474
+pow_p95_ms,70.754902
+effective_hash_rate_hps,1000715.444356

@@ -1,0 +1,15 @@
+{
+  "batch_size": 128,
+  "csv": "/opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_correctness_10k_pow15.csv",
+  "epsilon_c": 2.0,
+  "epsilon_h": 0.5,
+  "k0": 12,
+  "lambda": 0.1,
+  "mechanism": "TEE-PoW",
+  "phase": "phase_correctness_10k_pow15",
+  "reports": 10000,
+  "reports_per_sec": 29.463048047712395,
+  "skip_pow": false,
+  "wall_time_sec": 339.40819645700003,
+  "workers": 4
+}

@@ -1,0 +1,5 @@
+{
+    "UserId": "AROAUCH6H324EQO2SRZ64:i-03b9d9a75887eec9b",
+    "Account": "279706066616",
+    "Arn": "arn:aws:sts::279706066616:assumed-role/dp-auditmarket-freeplan-nitrotpm-role/i-03b9d9a75887eec9b"
+}

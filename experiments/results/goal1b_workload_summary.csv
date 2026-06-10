@@ -1,0 +1,2 @@
+source,seed,users,campaigns,segments,campaign_segment_cells,impressions,clicks,conversions,click_rate,conversion_rate_given_click,segment_skew
+deterministic privacy-safe surrogate,2026,50000,16,96,1536,525916,15614,270,0.02968915187976787,0.017292173690277957,1.15

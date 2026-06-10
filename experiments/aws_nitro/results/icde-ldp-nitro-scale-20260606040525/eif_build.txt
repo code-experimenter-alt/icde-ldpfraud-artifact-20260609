@@ -1,0 +1,13 @@
+$ nitro-cli build-enclave --docker-uri ldp-tee-oracle:icde-ldp-nitro-scale-20260606040525 --output-file /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/ldp-tee-oracle.eif
+Start building the Enclave Image...
+Using the locally available Docker image...
+Enclave Image successfully created.
+{
+  "Measurements": {
+    "HashAlgorithm": "Sha384 { ... }",
+    "PCR0": "c189c18e80fe2bf82d2a266b3e5d74f47f418b4db955714aad5a856506488ef2dc093b23ec41884bcd0ce17bcf489336",
+    "PCR1": "4b4d5b3661b3efc12920900c80e126e4ce783c522de6c02a2a5bf7af3a2b9327b86776f188e4be1c1c404a129dbda493",
+    "PCR2": "fe3b5422b04700731d6be4d16d331d77446c254bf57207da0a79d92c2783a76bcb031b8ea4e52f25b99a083aa5894733"
+  }
+}
+[exit 0]

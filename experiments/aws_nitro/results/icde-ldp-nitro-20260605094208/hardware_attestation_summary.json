@@ -1,0 +1,15 @@
+{
+  "attestation_documents": 50,
+  "attestation_modes": [
+    "nsm-rust-helper"
+  ],
+  "k_bits": [
+    15
+  ],
+  "mean_attestation_ms": 2.10314394,
+  "mean_oracle_ms": 2.21255096,
+  "mean_pow_ms": 32.744573079999995,
+  "mean_round_trip_ms": 3.37009678,
+  "reports": 50,
+  "tee_backend": "aws-nitro-enclave"
+}

@@ -1,0 +1,53 @@
+$ nitro-cli terminate-enclave --all
+[]
+[exit 0]
+$ /usr/bin/python3 /opt/icde-ldp-nitro/parent_host.py --cid 16 --port 5000 --reports 10000 --workers 4 --batch-size 128 --epsilon-h 0.5 --epsilon-c 2.0 --lambda 0.1 --k0 12 --phase phase_correctness_10k_pow15 --mechanism TEE-PoW --session phase_correctness_10k_pow15 --out /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_correctness_10k_pow15.csv --attestation-dir /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/attestation_docs --attestation-retain-first 0 --attestation-retain-every 1 --progress-every 50000
+Wrote 10000 rows to /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_correctness_10k_pow15.csv
+[exit 0]
+$ /usr/bin/python3 /opt/icde-ldp-nitro/parent_host.py --cid 16 --port 5000 --reports 1000000 --workers 8 --batch-size 128 --epsilon-h 2.0 --epsilon-c 2.0 --lambda 0.0 --k0 0 --phase phase_direct_1m_k0 --mechanism DirectAttest --session phase_direct_1m_k0 --out /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_direct_1m_k0.csv --attestation-dir /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/attestation_docs --attestation-retain-first 16 --attestation-retain-every 10000 --progress-every 50000 --skip-pow
+phase_direct_1m_k0: wrote 50000/1000000
+phase_direct_1m_k0: wrote 100000/1000000
+phase_direct_1m_k0: wrote 150000/1000000
+phase_direct_1m_k0: wrote 200000/1000000
+phase_direct_1m_k0: wrote 250000/1000000
+phase_direct_1m_k0: wrote 300000/1000000
+phase_direct_1m_k0: wrote 350000/1000000
+phase_direct_1m_k0: wrote 400000/1000000
+phase_direct_1m_k0: wrote 450000/1000000
+phase_direct_1m_k0: wrote 500000/1000000
+phase_direct_1m_k0: wrote 550000/1000000
+phase_direct_1m_k0: wrote 600000/1000000
+phase_direct_1m_k0: wrote 650000/1000000
+phase_direct_1m_k0: wrote 700000/1000000
+phase_direct_1m_k0: wrote 750000/1000000
+phase_direct_1m_k0: wrote 800000/1000000
+phase_direct_1m_k0: wrote 850000/1000000
+phase_direct_1m_k0: wrote 900000/1000000
+phase_direct_1m_k0: wrote 950000/1000000
+phase_direct_1m_k0: wrote 1000000/1000000
+Wrote 1000000 rows to /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_direct_1m_k0.csv
+[exit 0]
+$ /usr/bin/python3 /opt/icde-ldp-nitro/parent_host.py --cid 16 --port 5000 --reports 1000000 --workers 8 --batch-size 128 --epsilon-h 0.5 --epsilon-c 2.0 --lambda 0.0 --k0 0 --phase phase_teeonly_1m_k0 --mechanism TEEOnly --session phase_teeonly_1m_k0 --out /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_teeonly_1m_k0.csv --attestation-dir /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/attestation_docs --attestation-retain-first 16 --attestation-retain-every 10000 --progress-every 50000 --skip-pow
+phase_teeonly_1m_k0: wrote 50000/1000000
+phase_teeonly_1m_k0: wrote 100000/1000000
+phase_teeonly_1m_k0: wrote 150000/1000000
+phase_teeonly_1m_k0: wrote 200000/1000000
+phase_teeonly_1m_k0: wrote 250000/1000000
+phase_teeonly_1m_k0: wrote 300000/1000000
+phase_teeonly_1m_k0: wrote 350000/1000000
+phase_teeonly_1m_k0: wrote 400000/1000000
+phase_teeonly_1m_k0: wrote 450000/1000000
+phase_teeonly_1m_k0: wrote 500000/1000000
+phase_teeonly_1m_k0: wrote 550000/1000000
+phase_teeonly_1m_k0: wrote 600000/1000000
+phase_teeonly_1m_k0: wrote 650000/1000000
+phase_teeonly_1m_k0: wrote 700000/1000000
+phase_teeonly_1m_k0: wrote 750000/1000000
+phase_teeonly_1m_k0: wrote 800000/1000000
+phase_teeonly_1m_k0: wrote 850000/1000000
+phase_teeonly_1m_k0: wrote 900000/1000000
+phase_teeonly_1m_k0: wrote 950000/1000000
+phase_teeonly_1m_k0: wrote 1000000/1000000
+Wrote 1000000 rows to /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_teeonly_1m_k0.csv
+[exit 0]
+$ /usr/bin/python3 /opt/icde-ldp-nitro/parent_host.py --cid 16 --port 5000 --reports 250000 --workers 8 --batch-size 128 --epsilon-h 0.5 --epsilon-c 2.0 --lambda 0.1 --k0 12 --phase phase_teepow_250k_pow15 --mechanism TEE-PoW --session phase_teepow_250k_pow15 --out /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_teepow_250k_pow15.csv --attestation-dir /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/attestation_docs --attestation-retain-first 16 --attestation-retain-every 10000 --progress-every 50000

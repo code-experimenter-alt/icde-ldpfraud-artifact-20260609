@@ -1,0 +1,8 @@
+{
+  "inputs": [
+    "fraud_premiums.csv",
+    "goal3_pow_calibration.csv"
+  ],
+  "representative_hash_rate": 1000715.4443560088,
+  "rows": 8100
+}

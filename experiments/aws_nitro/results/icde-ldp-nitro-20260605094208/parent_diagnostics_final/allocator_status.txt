@@ -1,0 +1,16 @@
+● nitro-enclaves-allocator.service - Nitro Enclaves Resource Allocator
+     Loaded: loaded (/usr/lib/systemd/system/nitro-enclaves-allocator.service; enabled; preset: disabled)
+     Active: active (exited) since Fri 2026-06-05 09:43:33 UTC; 56s ago
+   Main PID: 5361 (code=exited, status=0/SUCCESS)
+        CPU: 197ms
+
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Auto-generating the enclave CPU pool by using the CPU count...
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Will try to reserve 2048 MB of memory on node 0.
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Configuring the huge page memory...
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: - Reserved 2 pages of type: 1048576kB.
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Done.
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Auto-generated the enclave CPU pool: 1,3.
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Configuring the enclave CPU pool...
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Done.
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal nitro-enclaves-allocator[5361]: Successfully allocated Nitro Enclaves resources: 2048 MiB, 2 CPUs
+Jun 05 09:43:33 ip-172-31-3-92.us-east-2.compute.internal systemd[1]: Finished nitro-enclaves-allocator.service - Nitro Enclaves Resource Allocator.

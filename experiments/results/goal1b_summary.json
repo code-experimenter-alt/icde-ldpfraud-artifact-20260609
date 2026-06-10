@@ -1,0 +1,21 @@
+{
+  "campaign_segment_cells": 1536,
+  "campaigns": 16,
+  "click_rate": 0.02968915187976787,
+  "clicks": 15614,
+  "conversion_rate_given_click": 0.017292173690277957,
+  "conversions": 270,
+  "impressions": 525916,
+  "outputs": [
+    "goal1b_audience_count.csv",
+    "goal1b_segment_reach.csv",
+    "goal1b_conversion_sketch.csv",
+    "goal1b_pricing_trace.csv",
+    "goal1b_disclosure_frontier.csv"
+  ],
+  "seed": 2026,
+  "segment_skew": 1.15,
+  "segments": 96,
+  "source": "deterministic privacy-safe surrogate",
+  "users": 50000
+}

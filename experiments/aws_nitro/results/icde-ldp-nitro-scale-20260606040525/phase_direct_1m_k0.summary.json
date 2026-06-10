@@ -1,0 +1,15 @@
+{
+  "batch_size": 128,
+  "csv": "/opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_direct_1m_k0.csv",
+  "epsilon_c": 2.0,
+  "epsilon_h": 2.0,
+  "k0": 0,
+  "lambda": 0.0,
+  "mechanism": "DirectAttest",
+  "phase": "phase_direct_1m_k0",
+  "reports": 1000000,
+  "reports_per_sec": 666.6352349673308,
+  "skip_pow": true,
+  "wall_time_sec": 1500.070724658,
+  "workers": 8
+}

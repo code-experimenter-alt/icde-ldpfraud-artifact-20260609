@@ -1,0 +1,8 @@
+Successfully terminated enclave i-03b9d9a75887eec9b-enc19e972b479b191c.
+[
+  {
+    "EnclaveName": "ldp-tee-oracle",
+    "EnclaveID": "i-03b9d9a75887eec9b-enc19e972b479b191c",
+    "Terminated": true
+  }
+]

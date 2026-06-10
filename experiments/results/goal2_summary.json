@@ -1,0 +1,20 @@
+{
+  "attestation_docs": 50,
+  "response_documents": 50,
+  "run_dir": "experiments/aws_nitro/results/icde-ldp-nitro-20260605094208",
+  "summary": {
+    "attest_mean_ms": 2.10314394,
+    "attest_p95_ms": 2.21535315,
+    "effective_hash_rate_hps": 1000715.4443560088,
+    "k_bits": 15,
+    "oracle_mean_ms": 2.21255096,
+    "oracle_p95_ms": 2.3250366,
+    "pow_mean_ms": 32.74457308,
+    "pow_median_ms": 26.066474499999998,
+    "pow_p95_ms": 70.7549024,
+    "reports": 50,
+    "run_id": "icde-ldp-nitro-20260605094208",
+    "vsock_mean_ms": 3.37009678,
+    "vsock_p95_ms": 3.7131574499999997
+  }
+}

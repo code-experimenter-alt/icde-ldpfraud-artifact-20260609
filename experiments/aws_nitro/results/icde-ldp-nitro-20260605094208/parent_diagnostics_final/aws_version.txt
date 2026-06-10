@@ -1,0 +1,1 @@
+aws-cli/2.33.15 Python/3.9.25 Linux/6.1.172-216.329.amzn2023.x86_64 source/x86_64.amzn.2023

@@ -1,0 +1,23 @@
+{
+  "baseline_utility": 19.249499999999998,
+  "case_study": {
+    "accepted_fraud_rate": "0.644000",
+    "buyer_utility": "0.0000",
+    "decision_regret": "19.2495",
+    "efficiency": "0.542116",
+    "epsilon_c": 1.0,
+    "mechanism": "NoVerify",
+    "rho": 0.7,
+    "seed": 2026,
+    "segment_skew": 1.0,
+    "seller_penalty": "0.0000",
+    "seller_revenue": "17.4830"
+  },
+  "inputs": [
+    "goal1b_conversion_sketch.csv",
+    "goal1b_pricing_trace.csv"
+  ],
+  "mean_overclaim_premium": 7.68996,
+  "note": "Buyer utility and seller revenue are reported separately.",
+  "rows": 3600
+}

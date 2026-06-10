@@ -1,0 +1,11 @@
+goal,claim,script,output_files,figure_files,source_type
+Goal 0,disclosure baselines,experiments/expanded_experiments.py --goal goal0,goal0_disclosure_regimes.csv,figures/disclosure_frontier.pdf,local disclosure-deterrence simulation
+Goal 1,valuation curves,experiments/ldp_market_eval.py,valuation_curves.csv; fraud_premiums.csv,figures/valuation_curves.pdf; figures/fraud_premium_heatmap.pdf,local analytic simulation
+Goal 1B,marketing workload,experiments/goal1b_marketing_workloads.py,goal1b_audience_count.csv; goal1b_segment_reach.csv; goal1b_conversion_sketch.csv,figures/marketing_audience_error.pdf; figures/marketing_conversion_regret.pdf,surrogate or public marketing-log workload
+Goal 2,Nitro pilot,experiments/aws_nitro/README.md,nitro_measurements.csv; goal2_replay_confusion.csv,figures/nitro_latency.pdf,real AWS Nitro plus mutation tests
+Goal 3,PoW calibration,experiments/expanded_experiments.py --goal goal3,goal3_pow_calibration.csv; goal3_deadline_acceptance.csv,figures/pow_calibration.pdf; figures/pow_deadline_heatmap.pdf,Nitro-calibrated local benchmark
+Goal 4,IC sweeps,experiments/expanded_experiments.py --goal goal4,goal4_payoff_sweep.csv; goal4_ic_summary.csv,figures/ic_coverage_heatmap.pdf,local market simulation
+Goal 5,market utility,experiments/goal5_market_pipeline.py,goal5_market_utility.csv,figures/market_utility.pdf,Goal 1B workload-driven market simulation
+Goal 6,robustness,experiments/expanded_experiments.py --goal goal6,goal6_robustness.csv,figures/robustness_ablation.pdf,local ablation simulation
+Goal 7,pipeline throughput/cost,experiments/goal7_throughput_cost.py,goal7_throughput_cost.csv,figures/throughput_cost.pdf,measured AWS Nitro when scale run exists; appendix estimate only with explicit flag
+Goal 8,attacker study,experiments/expanded_experiments.py --goal goal8,goal8_attacker_strategies.csv; goal8_confusion_matrix.csv,figures/attacker_strategy.pdf,local strategic simulation

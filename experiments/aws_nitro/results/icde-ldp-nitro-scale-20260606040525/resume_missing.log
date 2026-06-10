@@ -1,0 +1,27 @@
+=== resume started ===
+Sat Jun  6 05:10:26 UTC 2026
+phase_teepow_250k_pow15: wrote 50000/250000
+phase_teepow_250k_pow15: wrote 100000/250000
+phase_teepow_250k_pow15: wrote 150000/250000
+phase_teepow_250k_pow15: wrote 200000/250000
+phase_teepow_250k_pow15: wrote 250000/250000
+Wrote 250000 rows to /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_teepow_250k_pow15.csv
+phase_hybrid_500k_pow14: wrote 50000/500000
+phase_hybrid_500k_pow14: wrote 100000/500000
+phase_hybrid_500k_pow14: wrote 150000/500000
+phase_hybrid_500k_pow14: wrote 200000/500000
+phase_hybrid_500k_pow14: wrote 250000/500000
+phase_hybrid_500k_pow14: wrote 300000/500000
+phase_hybrid_500k_pow14: wrote 350000/500000
+phase_hybrid_500k_pow14: wrote 400000/500000
+phase_hybrid_500k_pow14: wrote 450000/500000
+phase_hybrid_500k_pow14: wrote 500000/500000
+Wrote 500000 rows to /opt/icde-ldp-nitro/results/icde-ldp-nitro-scale-20260606040525/phase_hybrid_500k_pow14.csv
+Successfully terminated enclave i-08d4cc7ab392f3033-enc19e9b1b72c264bd.
+[
+  {
+    "EnclaveName": "ldp-tee-oracle",
+    "EnclaveID": "i-08d4cc7ab392f3033-enc19e9b1b72c264bd",
+    "Terminated": true
+  }
+]

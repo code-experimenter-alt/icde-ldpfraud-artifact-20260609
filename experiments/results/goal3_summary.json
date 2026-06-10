@@ -1,0 +1,8 @@
+{
+  "local_hash_rate_hps": 3519306.683067335,
+  "nitro_effective_hash_rate_hps": 1000715.4443560088,
+  "nitro_k_bits": 15,
+  "nitro_pow_mean_ms": 32.74457308,
+  "nitro_run": "icde-ldp-nitro-20260605094208",
+  "seed": 2026
+}

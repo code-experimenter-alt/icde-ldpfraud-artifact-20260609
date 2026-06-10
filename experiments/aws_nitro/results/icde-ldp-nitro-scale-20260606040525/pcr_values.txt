@@ -1,0 +1,5 @@
+error: unexpected argument '--eif-path' found
+
+Usage: nitro-cli pcr [OPTIONS]
+
+For more information, try '--help'.
